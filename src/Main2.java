@@ -1,17 +1,31 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 /*
- * ----USE THIS ONE IF YOU WANT TO SUBMIT IT TO ONLINEJUDGE.ORG----
- * This class uses an InputStreamReader instead.
- * Error lines not updated.
- */
+ * You need to create the file Input.txt inside the project's folder to use this program.
+ * 
+ * That file has to have the following structure:
+ * 
+ * |Start of line|
+ * 2					<- An integer which represent the number of books.
+ * 40 40				<- The price of each book separated by spaces.
+ * 80					<- The amount of money that is currently owned.
+ * 
+ * 5					<- An integer which represent the number of books.
+ * 10 2 6 8 4			<- The price of each book separated by spaces.
+ * 10					<- The amount of money that is currently owned.
+ * 
+ * (...)				<- It goes indefinitely until it reaches the EOF.
+ * |End of line|
+ * 
+ * You'll find errors if you don't make sure these 2 conditions are fulfilled.
+*/
 
-public class Main {
+public class Main2 {
 
 	private static final String ERROR_LINE = "An error ocurred. Please make sure you have Input.txt inside the project's folder and that you have permission to open the file.";
 	private static final String ERROR_LINE_2= "The file's content isn't valid (Input.txt), please check if you wrote it correctly. Example:\n2\n40 40\n80";
@@ -36,7 +50,7 @@ public class Main {
 	}
 
 	public static void importData(String fn) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedReader br = new BufferedReader(new FileReader(fn));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		String line = br.readLine();
@@ -50,7 +64,7 @@ public class Main {
 			caseListInt = convertStringArrToIntArr(caseList);
 			Arrays.sort(caseListInt);
 			searchBooks();
-			bw.write("Peter should buy books whose prices are " + book1 + " and " + book2 + ".\n\n");
+			bw.write("Peter should buy books whose prices are " + book1 + " and " + book2 + ".\n");
 			line = br.readLine();
 			line = br.readLine();
 		}
